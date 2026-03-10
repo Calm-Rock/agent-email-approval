@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# agent-email-approval
 
-## Getting Started
+A human-in-the-loop approval system for AI agents using email, Resend, and Next.js.
 
-First, run the development server:
+Instead of acting autonomously, the agent pauses before taking any high-stakes action and sends you an approval email with two buttons — **Approve** or **Reject**. Nothing happens until you decide.
 
+## How It Works
+
+1. Agent scans support tickets and identifies a pattern
+2. Instead of acting, it sends you an approval email via Resend
+3. You tap Approve or Reject from your inbox
+4. Agent proceeds or stops based on your decision
+5. A confirmation email fires to close the loop
+
+## Prerequisites
+
+- Node.js
+- A [Resend](https://resend.com) account with a verified domain
+- A [Groq](https://groq.com) API key 
+  
+## Setup
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Calm-Rock/agent-email-approval.git
+cd agent-email-approval
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file in the root:
+```bash
+RESEND_API_KEY=re_xxxxxxxxx
+SECRET_KEY=your_secret_key_here        # generate with: openssl rand -hex 32
+APPROVAL_BASE_URL=http://localhost:3000
+APPROVER_EMAIL=you@youremail.com
+FROM_EMAIL=agent@yourdomain.com
+GROQ_API_KEY=your_groq_api_key_here    
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Terminal 1** — start the Next.js server:
+```bash
+npm run dev
+```
 
-## Learn More
+**Terminal 2** — run the agent:
+```bash
+node agent.js
+```
 
-To learn more about Next.js, take a look at the following resources:
+Check your inbox for the approval email.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Description |
+|---|---|
+| `RESEND_API_KEY` | Your Resend API key from the [Resend dashboard](https://resend.com/api-keys) |
+| `SECRET_KEY` | Random secret used to sign approval URLs. Generate with `openssl rand -hex 32` |
+| `APPROVAL_BASE_URL` | Base URL of the server. Use `http://localhost:3000` for local development |
+| `APPROVER_EMAIL` | Email address that receives the approval request |
+| `FROM_EMAIL` | Email address the agent sends from. Must be a verified Resend domain |
+| `GROQ_API_KEY` | Groq API key for AI-powered ticket analysis |
 
-## Deploy on Vercel
+## Blog Post
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Read the full walkthrough: [coming soon]
