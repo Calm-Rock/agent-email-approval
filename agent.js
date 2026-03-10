@@ -71,17 +71,27 @@ async function sendWorkaroundEmails(affectedUsers, bug, message) {
 
   console.log(`📧 Agent: Sending workaround emails to ${affectedUsers.length} users...\n`);
 
-  for (const user of affectedUsers) {
-    await resend.emails.send({
-      from: process.env.FROM_EMAIL,
-      to: user,
-      subject: `Important: Workaround for ${bug}`,
-      html: `<p>${message}</p>`,
-    });
-    console.log(`   ✓ Sent to ${user}`);
-  }
+  let successCount = 0;
 
-  console.log(`\n✅ Done. ${affectedUsers.length} users notified.`);
+  for (const user of affectedUsers) {
+      const { data, error } = await resend.emails.send({
+        from: process.env.FROM_EMAIL,
+        to: user,
+        subject: `Important: Workaround for ${bug}`,
+        html: `<p>${message}</p>`,
+      });
+
+      if (error) {
+        console.log(`   ✗ Failed to send to ${user}: ${error.message}`);
+      } else {
+        console.log(`   ✓ Sent to ${user}`);
+        successCount++;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 600));
+    }
+
+  console.log(`\n✅ Done. ${successCount}/${affectedUsers.length} users notified.`);
 }
 
 async function run() {
