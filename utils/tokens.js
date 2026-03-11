@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+if (!process.env.SECRET_KEY) throw new Error("SECRET_KEY is not set. Run: openssl rand -hex 32");
 
 function generateApprovalUrls(actionId) {
   const expiry = Date.now() + 24 * 60 * 60 * 1000;
