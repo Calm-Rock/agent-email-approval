@@ -62,4 +62,4 @@ Check your inbox for the approval email.
 
 ## Blog Post
 
-Read the full walkthrough: [coming soon]
+Read the full walkthrough: [Email as the Human-in-the-Loop for AI Agents](https://dev.to/cheeto/email-as-the-human-in-the-loop-for-ai-agents-12k3) (also on [Hashnode](https://cheeto.hashnode.dev/email-human-in-the-loop-ai-agents-resend)).
