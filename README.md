@@ -1,6 +1,15 @@
-# agent-email-approval
+<h1 align="center">agent-email-approval</h1>
 
-![Demo: running node agent.js, the agent pauses and asks for approval by email](https://cdn.hashnode.com/uploads/covers/629f27b7aa1e065bd75f6b54/8b3de551-f110-4ad5-9130-3b9b8dfb3a52.gif)
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white" alt="Resend" />
+  <img src="https://img.shields.io/badge/React_Email-111111?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjYgNiAyMCAyMCI%2BPHBhdGggY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuNSIgZD0iTTI0LjQ1NTggMjQuNDg1M0MyNS4yMzM5IDIzLjcwNzMgMjUuMzgwNSAyMi42NTQ5IDI1LjI5NDcgMjEuNzQ2QzI1LjIwNzggMjAuODI1NCAyNC44Njk3IDE5LjgyNTggMjQuMzg5NiAxOC44Mjg3QzIzLjk1NyAxNy45MzAyIDIzLjM4MDIgMTYuOTc0NSAyMi42ODIxIDE2QzIzLjM4MDIgMTUuMDI1NSAyMy45NTcgMTQuMDY5OCAyNC4zODk2IDEzLjE3MTNDMjQuODY5NyAxMi4xNzQyIDI1LjIwNzggMTEuMTc0NiAyNS4yOTQ3IDEwLjI1NEMyNS4zODA1IDkuMzQ1MDggMjUuMjMzOSA4LjI5MjczIDI0LjQ1NTggNy41MTQ3MkMyMy42Nzc4IDYuNzM2NzEgMjIuNjI1NSA2LjU5MDA0IDIxLjcxNjUgNi42NzU4NEMyMC43OTYgNi43NjI3MyAxOS43OTY0IDcuMTAwODYgMTguNzk5MyA3LjU4MDk0QzE3LjkwMDcgOC4wMTM1NyAxNi45NDUgOC41OTAzNiAxNS45NzA2IDkuMjg4NDJDMTQuOTk2MSA4LjU5MDM2IDE0LjA0MDQgOC4wMTM1NyAxMy4xNDE4IDcuNTgwOTRDMTIuMTQ0NyA3LjEwMDg2IDExLjE0NTEgNi43NjI3MyAxMC4yMjQ2IDYuNjc1ODRDOS4zMTU2NCA2LjU5MDA0IDguMjYzMjkgNi43MzY3MSA3LjQ4NTI4IDcuNTE0NzJDNi43MDcyNyA4LjI5MjczIDYuNTYwNiA5LjM0NTA4IDYuNjQ2NCAxMC4yNTRDNi43MzMzIDExLjE3NDYgNy4wNzE0MiAxMi4xNzQyIDcuNTUxNSAxMy4xNzEzQzcuOTg0MTQgMTQuMDY5OCA4LjU2MDkyIDE1LjAyNTUgOS4yNTg5OCAxNkM4LjU2MDkyIDE2Ljk3NDUgNy45ODQxNCAxNy45MzAyIDcuNTUxNSAxOC44Mjg3QzcuMDcxNDIgMTkuODI1OCA2LjczMzMgMjAuODI1NCA2LjY0NjQgMjEuNzQ2QzYuNTYwNiAyMi42NTQ5IDYuNzA3MjcgMjMuNzA3MyA3LjQ4NTI4IDI0LjQ4NTNDOC4yNjMyOSAyNS4yNjMzIDkuMzE1NjQgMjUuNDEgMTAuMjI0NiAyNS4zMjQyQzExLjE0NTEgMjUuMjM3MyAxMi4xNDQ3IDI0Ljg5OTEgMTMuMTQxOCAyNC40MTkxQzE0LjA0MDQgMjMuOTg2NCAxNC45OTYxIDIzLjQwOTYgMTUuOTcwNiAyMi43MTE2QzE2Ljk0NSAyMy40MDk2IDE3LjkwMDcgMjMuOTg2NCAxOC43OTkzIDI0LjQxOTFDMTkuNzk2NCAyNC44OTkxIDIwLjc5NiAyNS4yMzczIDIxLjcxNjUgMjUuMzI0MkMyMi42MjU1IDI1LjQxIDIzLjY3NzggMjUuMjYzMyAyNC40NTU4IDI0LjQ4NTNaTTE1Ljk3MDYgMjAuOTQ4QzE2LjgzOTkgMjAuMjY4NCAxNy43MjQgMTkuNDg3NCAxOC41OTEgMTguNjIwNUMxOS40NTggMTcuNzUzNSAyMC4yMzkgMTYuODY5MyAyMC45MTg2IDE2QzIwLjIzOSAxNS4xMzA3IDE5LjQ1OCAxNC4yNDY1IDE4LjU5MSAxMy4zNzk1QzE3LjcyNCAxMi41MTI2IDE2LjgzOTkgMTEuNzMxNiAxNS45NzA2IDExLjA1MkMxNS4xMDEyIDExLjczMTYgMTQuMjE3MSAxMi41MTI2IDEzLjM1MDEgMTMuMzc5NUMxMi40ODMxIDE0LjI0NjUgMTEuNzAyMSAxNS4xMzA3IDExLjAyMjUgMTZDMTEuNzAyMSAxNi44NjkzIDEyLjQ4MzEgMTcuNzUzNSAxMy4zNTAxIDE4LjYyMDVDMTQuMjE3MSAxOS40ODc0IDE1LjEwMTIgMjAuMjY4NCAxNS45NzA2IDIwLjk0OFpNMTcuMTQ5OCAyMS44MTQ1QzE3Ljk2OCAyMS4xNTU4IDE4Ljc4ODUgMjAuNDE5NSAxOS41ODkzIDE5LjYxODdDMjAuMzkgMTguODE4IDIxLjEyNjQgMTcuOTk3NCAyMS43ODUxIDE3LjE3OTJDMjMuNzE4NyAxOS45OTE5IDI0LjQ2MjcgMjIuNDgxOSAyMy40NTc2IDIzLjQ4N0MyMi40NTI0IDI0LjQ5MjIgMTkuOTYyNSAyMy43NDgyIDE3LjE0OTggMjEuODE0NVpNMTAuMTU2IDE3LjE3OTJDMTAuODE0OCAxNy45OTc0IDExLjU1MTEgMTguODE4IDEyLjM1MTggMTkuNjE4N0MxMy4xNTI2IDIwLjQxOTUgMTMuOTczMSAyMS4xNTU4IDE0Ljc5MTQgMjEuODE0NUMxMS45Nzg2IDIzLjc0ODIgOS40ODg3MSAyNC40OTIyIDguNDgzNTUgMjMuNDg3QzcuNDc4MzkgMjIuNDgxOSA4LjIyMjM4IDE5Ljk5MTkgMTAuMTU2IDE3LjE3OTJaTTEwLjE1NiAxNC44MjA4QzEwLjgxNDggMTQuMDAyNiAxMS41NTExIDEzLjE4MiAxMi4zNTE4IDEyLjM4MTNDMTMuMTUyNiAxMS41ODA1IDEzLjk3MzEgMTAuODQ0MiAxNC43OTE0IDEwLjE4NTVDMTEuOTc4NiA4LjI1MTgyIDkuNDg4NzEgNy41MDc4MyA4LjQ4MzU1IDguNTEyOTlDNy40NzgzOSA5LjUxODE1IDguMjIyMzggMTIuMDA4MSAxMC4xNTYgMTQuODIwOFpNMTcuMTQ5OCAxMC4xODU1QzE3Ljk2OCAxMC44NDQyIDE4Ljc4ODUgMTEuNTgwNSAxOS41ODkzIDEyLjM4MTNDMjAuMzkgMTMuMTgyIDIxLjEyNjQgMTQuMDAyNiAyMS43ODUxIDE0LjgyMDhDMjMuNzE4NyAxMi4wMDgxIDI0LjQ2MjcgOS41MTgxNSAyMy40NTc2IDguNTEyOTlDMjIuNDUyNCA3LjUwNzgzIDE5Ljk2MjUgOC4yNTE4MiAxNy4xNDk4IDEwLjE4NTVaIi8%2BPC9zdmc%2B" alt="React Email" />
+  <img src="https://img.shields.io/badge/Groq-F55036?style=for-the-badge" alt="Groq" />
+</p>
+
+<p align="center">
+  <img src="https://cdn.hashnode.com/uploads/covers/629f27b7aa1e065bd75f6b54/8b3de551-f110-4ad5-9130-3b9b8dfb3a52.gif" alt="Demo: running node agent.js, the agent pauses and asks for approval by email" width="800" />
+</p>
 
 A human-in-the-loop approval system for AI agents using email, Resend, and Next.js.
 
@@ -16,20 +25,9 @@ Instructions are only suggestions to an agent. A human approval gate that lives 
 
 1. Agent scans support tickets and identifies a pattern
 2. Instead of acting, it sends you an approval email via Resend
-3. You tap Approve or Reject from your inbox
+3. You tap Approve or Reject from your inbox (links are HMAC-SHA256 signed and expire after 24 hours)
 4. Agent proceeds or stops based on your decision
 5. A confirmation email fires to close the loop
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | [Next.js](https://nextjs.org) 16 (App Router), React 19 |
-| Email delivery | [Resend](https://resend.com) |
-| Email templates | [React Email](https://react.email) |
-| AI analysis | [Groq](https://groq.com) SDK with Llama 3.3 70B (`llama-3.3-70b-versatile`) |
-| Link security | Node `crypto`: HMAC-SHA256 signed links, 24-hour expiry, timing-safe comparison |
-| Runtime | Node.js |
 
 ## Prerequisites
 
